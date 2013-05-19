@@ -1,1 +1,1 @@
-web: bundle exec ruby pomodir.rb -p $PORT
+web: bundle exec ruby pomodori.rb -p $PORT
