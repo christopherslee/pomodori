@@ -1,0 +1,74 @@
+$start_color: #00a651;
+$wip_color: #FFF;
+body {
+  background: $start_color;
+  &.start {
+    background: $start_color;
+    -webkit-transition: 0.5s ease-in;
+  }
+  &.focused {
+    .hints {
+      opacity: 100;
+      -webkit-transition: all 0.25s ease-in;
+    }
+  }
+  &.wip {
+    background: $wip_color;
+    -webkit-transition: background 0.5s ease-in;
+    .task_field {
+      color: #888;
+      margin-top: 15%;
+      -webkit-transition: all 0.5s ease-in;
+    }
+    .timer {
+      display: block;
+      opacity: 1;
+      -webkit-transition: opacity 1.5s ease-in;
+    }
+  }
+  font-size: 62.5%;
+  font-family: 'BentonSans', sans-serif;
+  font-weight: 100;
+}
+.container {
+  text-align: center;
+}
+
+.task_field {
+  color: #FFF;
+  background: rgba(0,0,0,0);
+  border: none;
+  outline: none;
+  font-size: 36px;
+  font-weight: 100;
+  width: 90%;
+  margin-top: 25%;
+  text-align: center;
+  font-family: 'BentonSans', sans-serif;
+  &::-webkit-input-placeholder { /* WebKit browsers */
+    color: #FFF;
+    font-family: 'BentonSans', sans-serif;
+  }
+}
+
+.hints {
+  margin-top: 50px;
+  font-size: 18px;
+  font-weight: 400;
+  color: darken($start_color, 10%);
+  text-shadow: 1px 1px 0 lighten($start_color, 3%);
+  opacity: 0;
+  -webkit-transition: opacity 0.1s ease-out;
+}
+
+.timer {
+  margin-top: 50px;
+  font-size: 128px;
+  font-family: 'Helvetica';
+  color: #CCC;
+  font-weight: 800;
+  letter-spacing: -2px;
+  display: none;
+  opacity: 0;
+}
+
