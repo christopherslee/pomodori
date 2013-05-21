@@ -6,13 +6,17 @@ $(document).ready ->
   $('#task_field').blur ->
     $('body').removeClass('focused')
     $('#task_field').attr('placeholder', $('#task_field').data('placeholder'))
-  $('form').submit ->
-    return unless $('body').hasClass('focused')
+  $('#enable_notifications_link').click ->
     if window.webkitNotifications
       if window.webkitNotifications.checkPermission() is 0
         window.webkitNotifications.createNotification('icon.png', 'Notification Title', 'Notification content...')
       else
         window.webkitNotifications.requestPermission()
+  $('form').submit ->
+    return unless $('body').hasClass('focused')
+    if window.webkitNotifications
+      if window.webkitNotifications.checkPermission() is 0
+        window.webkitNotifications.createNotification('', 'Pomodoro Started', $('#task_field').val()).show()
     console.log("starting task: #{$('#task_field').val()}")
     $('body').removeClass('start focused').addClass('wip')
     $('#task_field').attr("disabled", "disabled").blur()
