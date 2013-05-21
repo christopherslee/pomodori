@@ -8,16 +8,13 @@ $(document).ready ->
     $('#task_field').attr('placeholder', $('#task_field').data('placeholder'))
   $('#enable_notifications_link').click ->
     if window.webkitNotifications
-      if window.webkitNotifications.checkPermission() is 0
-        window.webkitNotifications.createNotification('icon.png', 'Notification Title', 'Notification content...')
-      else
+      unless window.webkitNotifications.checkPermission() is 0
         window.webkitNotifications.requestPermission()
   $('form').submit ->
     return unless $('body').hasClass('focused')
     if window.webkitNotifications
-      if window.webkitNotifications.checkPermission() is 0
+      if window.webkitNotifications?.checkPermission() is 0
         window.webkitNotifications.createNotification('', 'Pomodoro Started', $('#task_field').val()).show()
-    console.log("starting task: #{$('#task_field').val()}")
     $('body').removeClass('start focused').addClass('wip')
     $('#task_field').attr("disabled", "disabled").blur()
     window.timer_end = moment().add('minutes', 20).add('seconds', 1)
@@ -29,7 +26,9 @@ $(document).ready ->
       seconds_left_as_string = seconds_left.toString()
       if current_time >= window.timer_end
         clearInterval(window.timer_id)
-        console.log("ring ring")
+        if window.webkitNotifications
+          if window.webkitNotifications?.checkPermission() is 0
+            window.webkitNotifications.createNotification('', 'Pomodoro Finished', $('#task_field').val()).show()
       if minutes_left < 10
         minutes_left_as_string = "0" + minutes_left_as_string
       if minutes_left is 0
