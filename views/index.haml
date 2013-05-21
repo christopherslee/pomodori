@@ -6,12 +6,13 @@
     %link{:href => "/stylesheets/styles.css", :rel => "stylesheet", :type => "text/css"}/
     %script{:src => "http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js", :type => "text/javascript"}
     %script{:src => "/mousetrap.min.js", :type => "text/javascript"}
+    %script{:src => "/moment.min.js", :type => "text/javascript"}
     %script{:src => "/javascripts/pomodori.js"}
     -#%script{:src => "bootstrap.min.js", :type => "text/javascript"}
   %body.start
     .container{:style => "padding-top: 10px"}
       %form{ :action => '', :onsubmit => 'return false'}
-        %input#task_field.task_field{ :type => :text, :placeholder => "What are you trying to get done?" }
+        %input#task_field.task_field{ :type => :text, :placeholder => "Type the task you are going to work on here" }
       .hints
         Press Enter to Start Timer
       .timer
